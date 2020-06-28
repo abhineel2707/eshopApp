@@ -1,9 +1,10 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using MySql.Data.EntityFrameworkCore.Metadata;
 
-namespace Infrastructure.Migrations
+namespace Infrastructure.Data.Migrations
 {
-    public partial class OrderEntityAdded : Migration
+    public partial class MySQLInitial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -12,11 +13,11 @@ namespace Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     ShortName = table.Column<string>(nullable: true),
                     DeliveryTime = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
-                    Price = table.Column<double>(type: "decimal(20,2)", nullable: false)
+                    Price = table.Column<decimal>(type: "decimal(20,2)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -28,7 +29,7 @@ namespace Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -41,7 +42,7 @@ namespace Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     Name = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -54,7 +55,7 @@ namespace Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     BuyerEmail = table.Column<string>(nullable: true),
                     OrderDate = table.Column<DateTimeOffset>(nullable: false),
                     ShipToAddress_FirstName = table.Column<string>(nullable: true),
@@ -64,7 +65,7 @@ namespace Infrastructure.Migrations
                     ShipToAddress_State = table.Column<string>(nullable: true),
                     ShipToAddress_Zipcode = table.Column<string>(nullable: true),
                     DeliveryMethodId = table.Column<int>(nullable: true),
-                    Subtotal = table.Column<double>(nullable: false),
+                    Subtotal = table.Column<decimal>(nullable: false),
                     Status = table.Column<string>(nullable: false),
                     PaymentIntentId = table.Column<string>(nullable: true)
                 },
@@ -84,10 +85,10 @@ namespace Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(maxLength: 120, nullable: false),
-                    Description = table.Column<string>(maxLength: 185, nullable: false),
-                    Price = table.Column<double>(type: "decimal(20,2)", nullable: false),
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(maxLength: 150, nullable: false),
+                    Description = table.Column<string>(nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(20,2)", nullable: false),
                     PictureUrl = table.Column<string>(nullable: false),
                     ProductTypeId = table.Column<int>(nullable: false),
                     ProductBrandId = table.Column<int>(nullable: false)
@@ -114,11 +115,11 @@ namespace Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
+                        .Annotation("MySQL:ValueGenerationStrategy", MySQLValueGenerationStrategy.IdentityColumn),
                     ItemOrdered_ProductItemId = table.Column<int>(nullable: true),
                     ItemOrdered_ProductName = table.Column<string>(nullable: true),
                     ItemOrdered_PictureUrl = table.Column<string>(nullable: true),
-                    Price = table.Column<double>(type: "decimal(20,2)", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(20,2)", nullable: false),
                     Quantity = table.Column<int>(nullable: false),
                     OrderId = table.Column<int>(nullable: true)
                 },
